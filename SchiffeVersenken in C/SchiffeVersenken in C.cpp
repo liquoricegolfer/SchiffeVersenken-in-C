@@ -2,80 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 #include "cussword.h"
-
-
-
-void algorithm(int rounds, int counter, int sunk, char* Water, int xhit, int hit) {
-
-    int missrightleft = 0;
-    int missup = 0;
-    int x, y, hittingships;
-    int Laengenarray[4] = { 4,3,2,1 };
-    int max;
-
-    rounds++;
-    if (rounds == 1) {
-        x = 4;
-        y = 4;
-    }
-    /*beobachtung der maximalen Schiffllänge*/
-    if (Laengenarray[4] == 0) {
-        max = 3;
-    }
-    if (Laengenarray[3] == 0) {
-        max = 2;
-    }
-    if (Laengenarray[2] == 0) {
-        max = 1;
-    }
-    if (Laengenarray[1] == 0) {
-        max = 0;
-
-    }
-    x = rand() % 10;
-    y = rand() % 10;
-
-
-    if (hit == 1) {
-        xhit = x;
-        x++;
-        hittingships = 1;
-        counter++;
-    }
-    if (hittingships == 1 && hit == 0) {
-
-        x = x - counter;
-        missrightleft = 1;
-    }
-    if (missrightleft == 1 && counter < Laengenarray[max]) {
-        x = xhit;
-        y = y - 1;
-        missup = 1;
-
-    }
-    if (hittingships == 1 && missup == 1 && counter < Laengenarray[max]) {
-        y = y + 2;
-        hittingships = 0;
-        Laengenarray[counter - 1]--;
-        sunk++;
-
-    }
-
-    if (counter == Laengenarray[max]) { /*Abzählung der Länge programmieren!!!!!!*/
-        hittingships = 0;
-        sunk++;
-    }
-    if (hit == 0) {
-        Water[10 * y + x] = 'W';
-    }
+#include <Windows.h>
+#include <iostream>
 
 
 
 
-
-
-
-}
 
 void Schuss(int Spieler, char Spielfeld[], char Spielfeldx[]){
     int x;
@@ -153,10 +85,20 @@ int main() {
     int Summe[10];
     int ztemp;
     int rounds;
-    int counter = 1;
+    int counter_a = 1;
     int sunk = 0;
     int hit = 0;
     char* word_cussword;
+    int missrightleft = 0;
+    int missup = 0;
+    int hittingships=0;
+
+    int max=3;
+    int xhit;
+
+
+
+    int Laengenarray[4] = { 4,3,2,1 };
     for (int i = 0; i < 10; i++) {
         Summe[i] = 0;
     }
@@ -946,7 +888,7 @@ int main() {
                 if (i % 10 == 0) {
                     printf("\n");
                 }
-                printf("[%c]", Spielfeld1[i]);
+                printf("[%c]", Spielfeld2[i]);
 
             }
 
@@ -1041,27 +983,27 @@ int main() {
 
             case 'r':
                 for (int i = 0; i < Laenge; ++i) {
-                    Spielfeld1[10 * y + x + i] = 's';
+                    Spielfeld2[10 * y + x + i] = 's';
                 }
                 break;
 
 
             case 'l':
                 for (int i = 0; i < Laenge; i++) {
-                    Spielfeld1[10 * y + x - i] = 's';
+                    Spielfeld2[10 * y + x - i] = 's';
                 }
                 break;
 
 
             case 'o':
                 for (int i = 0; i < Laenge; i++) {
-                    Spielfeld1[10 * y + x - i * 10] = 's';
+                    Spielfeld2[10 * y + x - i * 10] = 's';
                 }
                 break;
 
             case 'u':
                 for (int i = 0; i < Laenge; i++) {
-                    Spielfeld1[10 * y + x + i * 10] = 's';
+                    Spielfeld2[10 * y + x + i * 10] = 's';
                 }
                 break;
 
@@ -1092,7 +1034,7 @@ int main() {
 
 
 
-   
+    rounds = 0;
    
 
     for (int i = 0; i < 100; i++) {  /*die Spielfelder, die der Gegner sieht werden mit X befüllt*/
@@ -1129,21 +1071,24 @@ int main() {
 
     }
 
-    int missrighleft;
-    int missup;
-    int xhit;
+    
+    
+
 
     if (Auswahl == 1) {
 
 
         for (int i = r; n != 1; i++) {
+
+            system("cls");
+
             if (i % 2 == 0) {
 
                 for (int u = 0; u < 100; u++) {                      /*Schuss von Spieler*/
                     if (u % 10 == 0) {
                         printf("\n");
                     }
-                    printf("[%c]", Spielfeld2x[u]);
+                    printf("[%c]", Spielfeld1x[u]);
                 }
 
                 printf("Geben Sie bitte die Koordinaten fuer Ihren Schuss ein\n");
@@ -1151,22 +1096,22 @@ int main() {
 
 
 
-                if (Spielfeld2[y * 10 + x] == 's' || Spielfeld2[y * 10 + x] == 'S') {
+                if (Spielfeld1[y * 10 + x] == 's' || Spielfeld1[y * 10 + x] == 'S') {
                     printf("Treffer!");
-                    Spielfeld2[y * 10 + x] = 'S';
-                    Spielfeld2x[y * 10 + x] = 'S';
+                    Spielfeld1[y * 10 + x] = 'S';
+                    Spielfeld1x[y * 10 + x] = 'S';
                 }
                 else {
 
                     printf("Leider nicht getroffen");
-                    Spielfeld2[y * 10 + x] = 'W';
-                    Spielfeld2x[y * 10 + x] = 'W';
+                    Spielfeld1[y * 10 + x] = 'W';
+                    Spielfeld1x[y * 10 + x] = 'W';
                 }
                 Zaehler1 = 0;
 
 
                 for (int i = 0; i < 100; i++) {
-                    if (Spielfeld2[i] == 'S') {
+                    if (Spielfeld1[i] == 'S') {
                         Zaehler1++;
 
                         if (Zaehler1 == 30) {
@@ -1186,72 +1131,130 @@ int main() {
             /*Schuss von Algorithmus*/
 
             if (i % 2 == 0) {
+                
+
+                Sleep(1000);
+
+
+                system("cls");
+
+
+                
 
 
 
-
-
-                algorithm(rounds, counter, sunk, Spielfeld1x, xhit, hit);
-
-
-
-
-
-
-
-
-                if (Spielfeld1[y * 10 + x] == 's' || Spielfeld1[y * 10 + x] == 'S') {
-                    printf("Treffer!");
-                    Spielfeld1[y * 10 + x] = 'S';
-                    Spielfeld1x[y * 10 + x] = 'S';
-                    hit = 1;
+                rounds++;
+                if (rounds == 1) {
+                    x = 4;
+                    y = 4;
                 }
-                else {
+                /*beobachtung der maximalen Schiffllänge*/
+                if (Laengenarray[4] == 0) {
+                    max = 3;
+                }
+                if (Laengenarray[3] == 0) {
+                    max = 2;
+                }
+                if (Laengenarray[2] == 0) {
+                    max = 1;
+                }
+                if (Laengenarray[1] == 0) {
+                    max = 0;
 
-                    printf("Leider nicht getroffen");
-                    Spielfeld1[y * 10 + x] = 'W';
-                    Spielfeld1x[y * 10 + x] = 'W';
-                    hit = 0;
+                }
+                x = rand() % 10;
+                y = rand() % 10;
+
+
+                if (hit == 1) {
+                    xhit = x;
+                    x++;
+                    hittingships = 1;
+                    counter_a++;
+                }
+                if (hittingships == 1 && hit == 0) {
+
+                    x = x - counter_a;
+                    missrightleft = 1;
+                }
+                if (missrightleft == 1 && counter_a < Laengenarray[max]) {
+                    x = xhit;
+                    y = y - 1;
+                    missup = 1;
+
+                }
+                if (hittingships == 1 && missup == 1 && counter_a < Laengenarray[max]) {
+                    y = y + 2;
+                    hittingships = 0;
+                    Laengenarray[counter_a - 1]--;
+                    sunk++;
+
                 }
 
-
-
-
-
-
-
-
-
-
-
-
-                Zaehler2 = 0;
-
-
-                for (int i = 0; i < 100; i++) {
-                    if (Spielfeld1[i] == 'S') {
-                        Zaehler2++;
-
-                        if (Zaehler2 == 30) {
-                            printf("Spieler 2 hat gewonnen!!!");
-                            n = 1;
-                        }
-
-
-
-
-
-                    }
+                if (counter_a == Laengenarray[max]) { /*Abzählung der Länge programmieren!!!!!!*/
+                    hittingships = 0;
+                    sunk++;
                 }
-
-
+                if (hit == 0) {
+                    Spielfeld2x[10 * y + x] = 'W';
+                }
 
             }
 
 
+
+            
+
+
+            
+
+            if (Spielfeld2[y * 10 + x] == 's' || Spielfeld2[y * 10 + x] == 'S') {
+                printf("\n\nHAHA! Du %s\n\n", randomcussword());
+                Spielfeld2[y * 10 + x] = 'S';
+                Spielfeld2x[y * 10 + x] = 'S';
+                hit = 1;
+            }
+            else {
+
+                printf("\n\n...");
+                Spielfeld2[y * 10 + x] = 'W';
+                Spielfeld2x[y * 10 + x] = 'W';
+                hit = 0;
+            }
+
+
+
+
+
+
+            Sleep(1000);
+
+
+
+
+
+            Zaehler2 = 0;
+
+
+            for (int i = 0; i < 100; i++) {
+                if (Spielfeld2[i] == 'S') {
+                    Zaehler2++;
+
+                    if (Zaehler2 == 30) {
+                        printf("Spieler 2 hat gewonnen!!!");
+                        n = 1;
+                    }
+
+
+
+
+
+                }
+            }
+
+
+
         }
-
-
 
 
     }
@@ -1259,11 +1262,17 @@ int main() {
 
 
 
+    
 
 
 
 
 
+
+
+
+   
+   
 
     return 0;
 }
