@@ -1,6 +1,8 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "cussword.h"
+
 
 
 void algorithm(int rounds, int counter, int sunk, char* Water, int xhit, int hit) {
@@ -75,6 +77,54 @@ void algorithm(int rounds, int counter, int sunk, char* Water, int xhit, int hit
 
 }
 
+void Schuss(int Spieler, char Spielfeld[], char Spielfeldx[]){
+    int x;
+    int y;
+
+for (int u = 0; u < 100; u++) {                      
+    if (u % 10 == 0) {
+        printf("\n");
+    }
+    printf("[%c]", Spielfeldx[u]);
+}
+
+printf("Spieler %d, geben Sie bitte die Koordinaten fuer Ihren Schuss ein\n", Spieler);
+scanf("%d %d", &x, &y);
+
+
+
+if (Spielfeld[y * 10 + x] == 's' || Spielfeld[y * 10 + x] == 'S') {
+    printf("Treffer!");
+    Spielfeld[y * 10 + x] = 'S';
+    Spielfeldx[y * 10 + x] = 'S';
+}
+else {
+
+    printf("Leider nicht getroffen");
+    Spielfeld[y * 10 + x] = 'W';
+    Spielfeldx[y * 10 + x] = 'W';
+}
+int Zaehler = 0;
+
+
+for (int i = 0; i < 100; i++) {
+    if (Spielfeld[i] == 'S') {
+        Zaehler++;
+
+        if (Zaehler == 30) {
+            printf("Spieler %d hat gewonnen!!!", Spieler);
+            break;
+        }
+    }
+}
+
+
+
+}
+
+
+
+
 int main() {
     char Spielfeld1[100];
     char Spielfeld2[100];
@@ -106,6 +156,7 @@ int main() {
     int counter = 1;
     int sunk = 0;
     int hit = 0;
+    char* word_cussword;
     for (int i = 0; i < 10; i++) {
         Summe[i] = 0;
     }
@@ -128,8 +179,10 @@ int main() {
 
 
 
-
-
+    
+     
+     
+    
 
 
     printf("Geben Sie bitte die Anzahl der Spieler ein(1/2)\n");
@@ -1039,57 +1092,20 @@ int main() {
 
 
 
-
+   
+   
 
     for (int i = 0; i < 100; i++) {  /*die Spielfelder, die der Gegner sieht werden mit X befüllt*/
         Spielfeld1x[i] = 'X';
         Spielfeld2x[i] = 'X';
     }
-    if (Auswahl == 'j') {
+    if (Auswahl == 2) {
 
 
         for (int i = r; n != 1; i++) {
             if (i % 2 == 0) {
 
-                for (int u = 0; u < 100; u++) {                      /*Schuss von Spieler 1*/
-                    if (u % 10 == 0) {
-                        printf("\n");
-                    }
-                    printf("[%c]", Spielfeld2x[u]);
-                }
-
-                printf("Spieler 1, geben Sie bitte die Koordinaten fuer Ihren Schuss ein\n");
-                scanf("%d %d", &x, &y);
-
-
-
-                if (Spielfeld2[y * 10 + x] == 's' || Spielfeld2[y * 10 + x] == 'S') {
-                    printf("Treffer!");
-                    Spielfeld2[y * 10 + x] = 'S';
-                    Spielfeld2x[y * 10 + x] = 'S';
-                }
-                else {
-
-                    printf("Leider nicht getroffen");
-                    Spielfeld2[y * 10 + x] = 'W';
-                    Spielfeld2x[y * 10 + x] = 'W';
-                }
-                Zaehler1 = 0;
-
-
-                for (int i = 0; i < 100; i++) {
-                    if (Spielfeld2[i] == 'S') {
-                        Zaehler1++;
-
-                        if (Zaehler1 == 30) {
-                            printf("Spieler 1 hat gewonnen!!!");
-                            n = 1;
-                        }
-                    }
-                }
-
-
-
+                Schuss(1, Spielfeld2, Spielfeld2x);
             }
 
 
@@ -1099,42 +1115,7 @@ int main() {
 
             if (i % 2 == 0) {
 
-                for (int u = 0; u < 100; u++) {
-                    if (u % 10 == 0) {
-                        printf("\n");
-                    }
-                    printf("[%c]", Spielfeld1x[u]);
-                }
-
-                printf("Spieler 2, geben Sie bitte die Koordinaten fuer Ihren Schuss ein\n");
-                scanf("%d %d", &x, &y);
-
-
-
-                if (Spielfeld1[y * 10 + x] == 's' || Spielfeld1[y * 10 + x] == 'S') {
-                    printf("Treffer!");
-                    Spielfeld1[y * 10 + x] = 'S';
-                    Spielfeld1x[y * 10 + x] = 'S';
-                }
-                else {
-
-                    printf("Leider nicht getroffen");
-                    Spielfeld1[y * 10 + x] = 'W';
-                    Spielfeld1x[y * 10 + x] = 'W';
-                }
-                Zaehler2 = 0;
-
-
-                for (int i = 0; i < 100; i++) {
-                    if (Spielfeld1[i] == 'S') {
-                        Zaehler2++;
-
-                        if (Zaehler2 == 30) {
-                            printf("Spieler 2 hat gewonnen!!!");
-                            n = 1;
-                        }
-                    }
-                }
+                Schuss(2, Spielfeld1, Spielfeld1x);
 
 
 
@@ -1152,7 +1133,7 @@ int main() {
     int missup;
     int xhit;
 
-    if (Auswahl != 'j') {
+    if (Auswahl == 1) {
 
 
         for (int i = r; n != 1; i++) {

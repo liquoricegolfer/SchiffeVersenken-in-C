@@ -4,6 +4,6 @@
 cmake_minimum_required (VERSION 3.8)
 
 # Fügen Sie der ausführbaren Datei dieses Projekts eine Quelle hinzu.
-add_executable (CMakeTarget "SchiffeVersenken in C.cpp" "SchiffeVersenken in C.h")
+add_executable (CMakeTarget "SchiffeVersenken in C.cpp" "cussword.h")
 
 # TODO: Fügen Sie bei Bedarf Tests hinzu, und installieren Sie Ziele.
