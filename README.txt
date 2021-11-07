@@ -1,0 +1,1 @@
+Battleship Game where you can either play by yourself against the computer or with a friend. The Code is written in C. In the future it will also be possible to compete with this Code using UART on your Psoc or Raspberry Pi.
