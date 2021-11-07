@@ -85,17 +85,31 @@ int main() {
     int Summe[10];
     int ztemp;
     int rounds;
-    int counter_a = 1;
+    int counter_a = 0;
     int sunk = 0;
     int hit = 0;
     char* word_cussword;
     int missrightleft = 0;
     int missup = 0;
     int hittingships=0;
+    int xy_[100];
+    int xy;
+    int Probability[100];
+    int a;
+   
 
     int max=3;
-    int xhit;
+    int xyhit;
 
+    FILE* ptr;
+    ptr = fopen("Stats.txt","a+");
+
+
+    if (ptr == NULL)
+    {
+        printf("Error!");
+        exit(1);
+    }
 
 
     int Laengenarray[4] = { 4,3,2,1 };
@@ -112,6 +126,7 @@ int main() {
     for (int i = 0; i < 100; i++) {
         Spielfeld1[i] = 'w';
         Spielfeld2[i] = 'w';
+        Probability[100] = 100;
 
     }
 
@@ -840,7 +855,7 @@ int main() {
             printf("%d %d\n \n%d\n", random_x[u + z], random_y[u + z], Laenge);
 
         }
-
+/*
         int counter = 0;;
 
 
@@ -860,7 +875,7 @@ int main() {
         printf("\n");
 
 
-
+        */
 
 
 
@@ -871,7 +886,7 @@ int main() {
 
         for (int i = 10; i > 0; i--) {
 
-            /*system("@cls||clear");*/
+            system("@cls||clear");
 
             if (k == 1) {
                 printf("Es stehen leider keine weiteren Schiff dieser Art zur verfuegung, bitte waehlen Sie eine andere Art.\n\n");
@@ -1116,7 +1131,9 @@ int main() {
 
                         if (Zaehler1 == 30) {
                             printf("Sie haben gewonnen!!!");
+                            Sleep(2000);
                             n = 1;
+                            
                         }
                     }
                 }
@@ -1131,73 +1148,109 @@ int main() {
             /*Schuss von Algorithmus*/
 
             if (i % 2 == 0) {
-                
 
-                Sleep(1000);
+
+                /*Sleep(1000);*/
 
 
                 system("cls");
 
 
-                
 
+                for (int j = 0; j < 100; j++) {
+
+                    if (Spielfeld2x[xy] != 'W' && Spielfeld2x[xy] != 'S') {
+                        
+                        for (int e=4;i>0; e--) {
+                            if (Spielfeld2x[j + e] <= 99) {
+                                if (Spielfeld2x[j + e] == 'W' || Spielfeld2x[j + e] == 'S')
+                                    Probability[j]--;
+                            }
+                            else {
+                                Probability[j]--;
+                            }
+                            if (Spielfeld2x[j + e] >= 0) {
+                                if (Spielfeld2x[j - e] == 'W' || Spielfeld2x[j - e] == 'S')
+                                    Probability[j]--;
+                            }
+                            else {
+                                Probability[j]--;
+                            }
+                            if (Spielfeld2x[j + e * 10] <= 99) {
+                                if (Spielfeld2x[j + e * 10] == 'W' || Spielfeld2x[j + e * 10] == 'S')
+                                    Probability[j]--;
+                            }
+                            else {
+                                Probability[j]--;
+                            }
+                            if (Spielfeld2x[j + e] > 0) {
+                                if (Spielfeld2x[j - e * 10] == 'W' || Spielfeld2x[j - e * 10] == 'S')
+                                    Probability[j]--;
+                            }
+                            else {
+                                Probability[j]--;
+                            }
+
+                        }
+                    }
+
+
+                }
+               
+                for (int e = 0; e < 100; ++e)
+                {
+
+                    for (int j = e + 1; j < 100; ++j)
+                    {
+
+                        if (Probability[e] > Probability[j])
+                        {
+
+                            a = Probability[e];
+                            Probability[e] = Probability[j];
+                            Probability[j] = a;
+
+                        }
+
+                    }
+
+                }
+
+                
 
 
                 rounds++;
                 if (rounds == 1) {
-                    x = 4;
-                    y = 4;
+                    xy = 44;
+                    
                 }
+
+
                 /*beobachtung der maximalen Schiffllänge*/
                 if (Laengenarray[4] == 0) {
                     max = 3;
                 }
-                if (Laengenarray[3] == 0) {
+                if (Laengenarray[3] == 0 && Laengenarray[4]==0) {
                     max = 2;
                 }
-                if (Laengenarray[2] == 0) {
+                if (Laengenarray[2] == 0 && Laengenarray[3] == 0 && Laengenarray[4]==0) {
                     max = 1;
                 }
-                if (Laengenarray[1] == 0) {
+                if (Laengenarray[1] == 0 && Laengenarray[2] == 0 && Laengenarray[3] == 0 && Laengenarray[4] == 0) {
+                }
                     max = 0;
 
-                }
-                x = rand() % 10;
-                y = rand() % 10;
 
+                    if (rounds != 1 && hit==0) {
+                    }
+                    if (Spielfeld2x[xy + 15] != 'S') {
+                        xy = xy + 15;
+                    }
 
-                if (hit == 1) {
-                    xhit = x;
-                    x++;
-                    hittingships = 1;
-                    counter_a++;
-                }
-                if (hittingships == 1 && hit == 0) {
+                    
+                
 
-                    x = x - counter_a;
-                    missrightleft = 1;
-                }
-                if (missrightleft == 1 && counter_a < Laengenarray[max]) {
-                    x = xhit;
-                    y = y - 1;
-                    missup = 1;
-
-                }
-                if (hittingships == 1 && missup == 1 && counter_a < Laengenarray[max]) {
-                    y = y + 2;
-                    hittingships = 0;
-                    Laengenarray[counter_a - 1]--;
-                    sunk++;
-
-                }
-
-                if (counter_a == Laengenarray[max]) { /*Abzählung der Länge programmieren!!!!!!*/
-                    hittingships = 0;
-                    sunk++;
-                }
-                if (hit == 0) {
-                    Spielfeld2x[10 * y + x] = 'W';
-                }
+                
 
             }
 
@@ -1208,17 +1261,19 @@ int main() {
 
             
 
-            if (Spielfeld2[y * 10 + x] == 's' || Spielfeld2[y * 10 + x] == 'S') {
+            if (Spielfeld2[xy] == 's' || Spielfeld2[xy] == 'S') {
                 printf("\n\nHAHA! Du %s\n\n", randomcussword());
-                Spielfeld2[y * 10 + x] = 'S';
-                Spielfeld2x[y * 10 + x] = 'S';
+                Spielfeld2[xy] = 'S';
+                Spielfeld2x[xy] = 'S';
                 hit = 1;
+                xy_[rounds / 2] = xy;
+               
             }
             else {
 
                 printf("\n\n...");
-                Spielfeld2[y * 10 + x] = 'W';
-                Spielfeld2x[y * 10 + x] = 'W';
+                Spielfeld2[xy] = 'W';
+                Spielfeld2x[xy] = 'W';
                 hit = 0;
             }
 
@@ -1227,7 +1282,7 @@ int main() {
 
 
 
-            Sleep(1000);
+          /*  Sleep(1000);*/
 
 
 
@@ -1242,7 +1297,14 @@ int main() {
 
                     if (Zaehler2 == 30) {
                         printf("Spieler 2 hat gewonnen!!!");
+                        Sleep(2000);
+                        for (int i = 0; i <= rounds; i++) {
+                            fprintf(ptr, "%d", xy_[i]);
+                        }
                         n = 1;
+                        
+                       
+                       
                     }
 
 
@@ -1265,7 +1327,7 @@ int main() {
     
 
 
-
+    fclose(ptr);
 
 
 
