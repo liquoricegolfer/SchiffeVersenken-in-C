@@ -96,14 +96,17 @@ int main() {
     int xy;
     int Probability[100];
     int a;
-   
-
+    int highest = Probability[0];
+    int highestxy[60];
     int max=3;
-    int xyhit;
+    int* xyhit;
+
 
     FILE* ptr;
-    ptr = fopen("Stats.txt","a+");
+    ptr = fopen("home/chrisch/Coding/Stats.txt","a+");
 
+
+   
 
     if (ptr == NULL)
     {
@@ -1197,23 +1200,25 @@ int main() {
 
                 }
                
-                for (int e = 0; e < 100; ++e)
-                {
+                highest = Probability[0];
+                int p =0;
+ 
+        for (int j = 1; j < 100; j++) 
+        {
+            if (highest < Probability[j])
+            highest = Probability[j];
+            if(highest < Probability[j]){
+            highestxy[0] = j;
+            p=0;
+            }
+            if(highest == Probability[j])
+            {
+                p++;
+                highestxy[p] = Probability[j];
+            }
 
-                    for (int j = e + 1; j < 100; ++j)
-                    {
-
-                        if (Probability[e] > Probability[j++<100])
-                        {
-                        
-                           
-                            
-
-                        }
-
-                    }
-
-                }
+        }
+        xy = highestxy[rand()%p+1];
 
                 
 
@@ -1224,34 +1229,9 @@ int main() {
                     
                 }
 
-
-                /*beobachtung der maximalen Schiffllänge*/
-                if (Laengenarray[4] == 0) {
-                    max = 3;
-                }
-                if (Laengenarray[3] == 0 && Laengenarray[4]==0) {
-                    max = 2;
-                }
-                if (Laengenarray[2] == 0 && Laengenarray[3] == 0 && Laengenarray[4]==0) {
-                    max = 1;
-                }
-                if (Laengenarray[1] == 0 && Laengenarray[2] == 0 && Laengenarray[3] == 0 && Laengenarray[4] == 0) {
-                }
-                    max = 0;
-
-
-                    if (rounds != 1 && hit==0) {
-                    }
-                    if (Spielfeld2x[xy + 15] != 'S') {
-                        xy = xy + 15;
-                    }
-
                     
-                
-
-                
-
-            }
+            
+            
 
 
 
