@@ -55,7 +55,426 @@ for (int i = 0; i < 100; i++) {
 
 
 }
+int* randomSpielfeld() {
+    static char Spielfeld1[100];
+    char random_Richtung[10];
+    int random_y[400];
+    int random_x[400];
+    char random_Schiff[10] = { 'F','S','S','K','K','K','B','B','B','B' };
+    int Fehler[5] = { 0,0,0,0,0 };
+    int Felder[5] = { 0,0,0,0,0 };
+    int Laenge = 0;
+    
+   
+    for (int i = 0; i < 100; i++) {
+        Spielfeld1[i] = 'w';
+        
 
+    }
+
+
+    
+    for (int u = 0; u < 10; u++) {
+        random_Richtung[u] = "rlou"[rand() % 4];
+    }
+
+    for (int u = 0; u < 400; u++) {
+        random_x[u] = rand() % 10;
+    }
+    for (int u = 0; u < 400; u++) {
+        random_y[u] = rand() % 10;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    for (int u = 0; u < 10; u++) {
+        switch (random_Schiff[u]) {
+
+
+        case 'F':
+            Laenge = 5;
+            break;
+
+        case 'S':
+            Laenge = 4;
+            break;
+
+        case 'K':
+            Laenge = 3;
+            break;
+
+        case 'B':
+            Laenge = 2;
+            break;
+
+        default:
+            break;
+
+        }
+
+        for (int g = 0; g < 5; g++) {
+            Fehler[g] = 0;
+
+        }
+        int z = 0;
+        int ztemp = 0;
+
+        printf("%c", random_Richtung[u]);
+
+
+
+
+        switch (random_Richtung[u]) {
+
+
+        case 'r':
+
+
+            while (1) {
+
+
+
+                for (int e = 0; e < Laenge; e++) {
+
+                    Felder[e] = 10 * random_y[u] + random_x[u] + e;
+
+                    if (Spielfeld1[10 * random_y[u + z] + random_x[u + z] + e] == 's') {
+                        Fehler[e] = 1;
+                    }
+                    else {
+                        Fehler[e] = 0;
+                    }
+                }
+                for (int e = 0; e < Laenge - 1; e++) {
+
+                    if ((random_x[u + z] + e) == 9) {
+
+                        z = z + 30;
+                        Fehler[e] = 1;
+
+
+                    }
+
+
+                }
+
+
+
+                if (Fehler[0] + Fehler[1] + Fehler[2] + Fehler[3] + Fehler[4] != 0) {
+                    z = z + 30;
+
+
+
+                }
+
+                else {
+
+                    for (int i = 0; i < Laenge; i++) {
+                        Spielfeld1[10 * random_y[u + z] + random_x[u + z] + i] = 's';
+                    }
+                    break;
+                }
+                for (int e = 0; e < 5; e++) {
+                    Fehler[e] = 0;
+                }
+            }
+            /*{
+            for(int i=0; i<Laenge; ++i){
+                Spielfeld1[10*random_y[u]+random_x[u]+i]='s';
+            }
+            else{
+                for(int e=30;e<500; e++){
+                        if(Spielfeld1[10*random_y[u+e]+random_x[u+e]+i]='s')
+
+                }
+            }
+            }
+            */
+            /* for(int i=0; i<100; i++)
+                    {
+                        if(i%10==0)
+                        {
+                            printf("\n");
+                        }
+                        printf("[%c]",Spielfeld1[i]);
+
+                    }
+            */
+            break;
+
+
+
+
+
+
+
+
+        case 'l':
+            /*for(int i=0; i<Laenge; i++){
+            Spielfeld1[10*random_y[u]+random_x[u]-i]='s';
+            }
+            */
+
+
+            while (1) {
+
+
+
+                for (int e = 0; e < Laenge; e++) {
+
+                    if (Spielfeld1[10 * random_y[u + z] + random_x[u + z] - e] == 's') {
+                        Fehler[e] = 1;
+                    }
+                    else
+                        Fehler[e] = 0;
+                }
+                for (int e = 0; e < Laenge - 1; e++) {
+
+                    if ((random_x[u + z] - e) == 0) {
+
+                        z = z + 30;
+                        Fehler[e] = 1;
+
+                    }
+
+
+                }
+
+
+
+                if ((Fehler[0] + Fehler[1] + Fehler[2] + Fehler[3] + Fehler[4]) != 0) {
+                    z = z + 30;
+
+
+
+                }
+
+                else {
+
+                    for (int i = 0; i < Laenge; i++) {
+                        Spielfeld1[10 * random_y[u + z] + random_x[u + z] - i] = 's';
+                    }
+                    break;
+                }
+
+
+                for (int e = 0; e < 5; e++) {
+                    Fehler[e] = 0;
+                }
+            }
+
+
+
+            /*   for(int i=0; i<100; i++)
+                  {
+                      if(i%10==0)
+                      {
+                          printf("\n");
+                      }
+                      printf("[%c]",Spielfeld1[i]);
+
+                  }
+                  */
+
+            break;
+
+
+        case 'o':
+
+            while (1) {
+
+
+
+                for (int e = 0; e < Laenge; e++) {
+                    if (Spielfeld1[10 * random_y[u + z] + random_x[u + z] - e * 10] == 's') {
+                        Fehler[e] = 1;
+                        Felder[e] = 10 * random_y[u] + random_x[u] - e * 10;
+
+
+
+                    }
+                    else {
+                        Fehler[e] = 0;
+                    }
+                }
+                printf("\n%d %d\n", random_x[u + z], random_y[u + z]);
+
+                ztemp = z;
+
+
+                for (int e = 0; e < (Laenge - 1); e++) {
+                    if ((random_y[u + z] - e) == 0) {
+                        z = z + 30;
+                        Fehler[e] = 1;
+                    }
+                }
+
+
+                if ((Fehler[0] + Fehler[1] + Fehler[2] + Fehler[3] + Fehler[4]) != 0) {
+                    z = z + 30;
+
+
+
+                }
+
+                else {
+
+                    for (int i = 0; i < Laenge; i++) {
+                        Spielfeld1[10 * random_y[u + z] + random_x[u + z] - i * 10] = 's';
+                    }
+                    break;
+                }
+
+                for (int e = 0; e < Laenge; e++) {
+
+                    Fehler[e] = 0;
+                }
+            }
+
+
+
+
+            /*for(int i=0; i<Laenge; i++){
+            Spielfeld1[10*random_y[u]+random_x[u]-i*10]='s';
+            }
+            break;
+            */
+            /*
+             for(int i=0; i<100; i++)
+                    {
+                        if(i%10==0)
+                        {
+                            printf("\n");
+                        }
+                        printf("[%c]",Spielfeld1[i]);
+
+                    }
+                    */
+
+            break;
+        case 'u':
+            while (1) {
+
+
+
+
+
+
+                for (int e = 0; e < Laenge; e++) {
+                    if (Spielfeld1[10 * random_y[u + z] + random_x[u + z] + e * 10] == 's') {
+                        Fehler[e] = 1;
+                        Felder[e] = 10 * random_y[u] + random_x[u] + e * 10;
+
+
+
+                    }
+                    else {
+                        Fehler[e] = 0;
+                    }
+                }
+
+                for (int e = 0; e < Laenge - 1; e++) {
+                    if ((random_y[u + z] + e) == 9) {
+                        z = z + 30;
+                        Fehler[e] = 1;
+
+                    }
+                }
+
+
+                if ((Fehler[0] + Fehler[1] + Fehler[2] + Fehler[3] + Fehler[4]) != 0) {
+                    z = z + 30;
+
+                }
+
+                else {
+
+                    for (int i = 0; i < Laenge; i++) {
+                        Spielfeld1[10 * random_y[u + z] + random_x[u + z] + i * 10] = 's';
+                    }
+                    break;
+                }
+                for (int e = 0; e < 5; e++) {
+
+                    Fehler[e] = 0;
+                }
+
+
+            }
+
+
+
+
+            /*for(int i=0; i<Laenge; i++){
+            Spielfeld1[10*random_y[u]+random_x[u]-i*10]='s';
+            }
+            break;
+            */
+            /*
+             for(int i=0; i<100; i++)
+                    {
+                        if(i%10==0)
+                        {
+                            printf("\n");
+                        }
+                        printf("[%c]",Spielfeld1[i]);
+
+                    }
+                    */
+
+            break;
+            /*for(int i=0; i<Laenge; i++){
+            Spielfeld1[10*random_y[u]+random_x[u]+i*10]='s';
+            }
+            break;
+            */
+
+        default:
+            break;
+        }
+
+
+        printf("%d %d\n \n%d\n", random_x[u + z], random_y[u + z], Laenge);
+
+    }
+    /*
+            int counter = 0;;
+
+
+            for (int i = 0; i < 100; i++) {
+
+                if (i % 10 == 0) {
+                    printf("\n");
+                }
+
+                printf("[%c]", Spielfeld1[i]);
+                if (Spielfeld1[i] == 's') {
+                    counter++;
+                }
+            }
+            printf("Counter: %d", counter);
+
+            printf("\n");
+
+
+            */
+
+
+
+            /*Spieler*/
+
+
+    return Spielfeld1;
+
+}
 
 
 
@@ -207,7 +626,7 @@ int biggest(int var1, int var2, int var3, int var4) {
     }
 
     
-
+    
 
 
 
@@ -621,7 +1040,7 @@ int main() {
 
     }
 
-    else {                                  /*random generiertes Spielfeld*/
+    if(Auswahl==1) {                                  /*random generiertes Spielfeld*/
 
 
 
@@ -1185,10 +1604,22 @@ int main() {
 
 
 
+    if (Auswahl == 1) {
+        
+        int *Spiel;
+        Spiel= randomSpielfeld();
+        
+        for (int i = 0; i < 101; i++) {
+            if (i % 10 == 0) {
+                printf("\n");
+            }
+            printf("[%c]", (Spiel + i));
+        }
+        Sleep(10000);
+    }
 
 
-
-
+    
 
 
     /*Spiel*/
@@ -1390,7 +1821,7 @@ int main() {
                 /*Auswertung der Koordinaten mit der höchsten Wahrscheinlichkeit*/
                 highest = Probability[0];
                 int p = 1;
-
+                int temp = 0;
                 for (int j = 1; j < 100; j++)
                 {
                     if (highest < Probability[j]) {
@@ -1400,16 +1831,14 @@ int main() {
                         highest = Probability[j];
                         p = 1;
                     }
-                    if (highest == Probability[j]) {
-                        highestxy[p] = Probability[j];
+                    else if (highest == Probability[j]) {
+                        highestxy[p] = j;
                         p++;
                     }
                 
                 }
 
-                printf("\nhighesefskdjfkdsj Probability: %d %d\n", highestxy[0], highestxy[1]);
-
-
+               
                
                     xyhit = xy;
                     
