@@ -1246,6 +1246,7 @@ int main() {
     int poben = 0;
     int punten = 0;
     int firsthit = 0;
+    int randomshot = 0;
 
     if (Auswahl == 1) {
 
@@ -1312,6 +1313,12 @@ int main() {
 
                 system("cls");
 
+
+                for (int i = 0; i < 100; i++) {
+                    Probability[i] = 100;
+                }
+
+
                 for (int b = 0; b < 100; b++) {
 
                     if (Spielfeld2x[b] != 'X') {
@@ -1321,12 +1328,12 @@ int main() {
 
                 }
                 /*rounds wurde noch nicht aktualisiert*/
-                if (rounds != 0 && hit==0) {
+                if (rounds != 0) {
 
                     Probability[xy] = 0;
                     
                 }
-
+                randomshot = 0;
                 
 
                 printf("hit = %d xy= %d\n",hit,xy );
@@ -1425,6 +1432,7 @@ int main() {
                 if (hit == 0 && hitting == 1) {
                     if (rechts > 1) {
                         links = 1;
+                        
                         if ((firsthit - 1) < 0) {
                             hitting = 0;
                             rechts = 0;
@@ -1434,6 +1442,11 @@ int main() {
                         }
                         else {
                             xy = firsthit - 1;
+                           
+                            links = rechts;
+                            rechts = 0;
+                            oben = 0;
+                            unten = 0;
                         }
                     }
 
@@ -1446,8 +1459,13 @@ int main() {
                             oben = 0;
                             unten = 0;
                         }
-                        xy = firsthit + 1;
-
+                        else {
+                            xy = firsthit + 1;
+                            rechts = links;
+                            links = 0;
+                            oben = 0;
+                            unten = 0;
+                        }
                     }
                     if (oben > 1) {
                         unten = 1;
@@ -1460,6 +1478,10 @@ int main() {
                         }
                         else {
                             xy = firsthit + 10;
+                            rechts = 0;
+                            links = 0;
+                            oben = 0;
+                            unten = oben;
                         }
                     }
                     if (unten > 1) {
@@ -1472,9 +1494,11 @@ int main() {
                             unten = 0;
                         }
                         else {
-
-
                             xy = firsthit - 10;
+                            rechts = 0;
+                            links = 0;
+                            oben = unten;
+                            unten = 0;
                         }
 
 
@@ -1500,12 +1524,16 @@ int main() {
                     if (unten != 0) {
                         unten++;
                     }
+                    
+                    printf("REEEEEEEEEEEEEEEEEEEECHTS: %d", rechts);
                     if (rechts == 5 || links == 5 || oben == 5 || unten == 5) {
                         hitting = 0;
                         rechts = 0;
                         links = 0;
                         oben = 0;
                         unten = 0;
+                        randomshot = 1;
+                        
                     }
                     if (((rechts + links) == 5) || ((oben + unten) == 5)) {
                         hitting = 0;
@@ -1513,6 +1541,8 @@ int main() {
                         links = 0;
                         oben = 0;
                         unten = 0;
+                        randomshot = 1;
+                        
                     }
 
                     
@@ -1589,7 +1619,7 @@ int main() {
                         }
                     }
 
-                    if (hitting == 0) {
+                    if (randomshot == 0 && hitting == 0) {
                         firsthit = xyhit;
 
                         if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 1) {
@@ -1644,7 +1674,10 @@ int main() {
                 }
                 
                 
-                
+                if (randomshot ==1) {
+                    xy = highestxy[0];
+                   
+                }
                     
 
 
@@ -1678,7 +1711,7 @@ int main() {
 
 
 
-                  Sleep(10000);
+                  Sleep(3000);
 
 
 
