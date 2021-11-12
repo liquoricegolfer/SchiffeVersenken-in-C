@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 #include "cussword.h"
-#include <unistd.h>
 
 
 
 
+/*BUG fixes:
+einige Wahrscheinlichkeiten gehen in den negativen Bereich
+wenn ein hit erzielt wurde funktioniert der erste Schuss in die Wahrscheinlichste Richtung, jedoch wird dann nicht mehr verfolgt*/
 
 
 void Schuss(int Spieler, char Spielfeld[], char Spielfeldx[]){
@@ -54,6 +56,149 @@ for (int i = 0; i < 100; i++) {
 
 }
 
+int biggest(int var1, int var2, int var3, int var4) {
+
+    srand(time(NULL));
+    int random2 = rand() % 2;
+    int random3 = rand() % 3;
+    int random4 = rand() % 4;
+
+
+    /*code  1->rechts  2--> links 3--> oben 4--> unten*/
+
+    printf("\n %d\n %d\n %d\n %d\n", var1, var2, var3, var4);
+
+
+    if ((var1 > var2) && (var1 > var3) && (var1 > var4)) {
+        return 1;
+    }
+    if ((var2 > var1) && (var2 > var3) && (var1 > var4)) {
+        return 2;
+    }
+
+    if ((var3 > var1) && (var3 > var2) && (var3 > var4)) {
+        return 3;
+    }
+    if ((var4 > var1) && (var4 > var2) && (var4 > var3)) {
+        return 4;
+    }
+    if ((var1 == var2) && (var1 > var3) && (var1 > var4)) {
+        if (random2 == 0) {
+            return 1;
+        }
+        if (random2 == 1) {
+            return 2;
+        }
+    }
+    if ((var1 == var3) && (var1 > var2) && (var1 > var4)) {
+        if (random2 == 0) {
+            return 1;
+        }
+        if (random2 == 1) {
+            return 3;
+        }
+    }
+    if ((var1 == var4) && (var1 > var2) && (var1 > var3)) {
+        if (random2 == 0) {
+            return 1;
+        }
+        if (random2 == 1) {
+            return 4;
+        }
+
+    }
+
+
+    if ((var2 == var3) && (var2 > var1) && (var2 > var4)) {
+        if (random2 == 0) {
+            return 2;
+        }
+        if (random2 == 1) {
+            return 3;
+        }
+    }
+    if ((var2 == var4) && (var2 > var1) && (var1 > var3)) {
+        if (random2 == 0) {
+            return 2;
+        }
+        if (random2 == 1) {
+            return 4;
+        }
+    }
+    if ((var1 == var2) && (var1 == var3) && (var1 > var4)) {
+        if (random3 == 0) {
+            return 1;
+        }
+        if (random3 == 1) {
+            return 2;
+        }
+        if (random3 == 2) {
+            return 3;
+        }
+    }
+
+    if ((var2 == var3) && (var2 == var4) && (var2 > var1)) {
+        if (random3 == 0) {
+            return 2;
+        }
+        if (random3 == 1) {
+            return 3;
+        }
+        if (random3 == 2) {
+            return 4;
+        }
+    }
+
+    if ((var3 == var4) && (var3 == var1) && (var3 > var2)) {
+        if (random3 == 0) {
+            return 3;
+        }
+        if (random2 == 1) {
+            return 4;
+        }
+        if (random3 == 2) {
+            return 1;
+        }
+    }
+    if ((var4 == var1) && (var1 == var2) && (var4 > var3)) {
+        if (random3 == 0) {
+            return 4;
+        }
+        if (random3 == 1) {
+            return 1;
+        }
+        if (random3 == 2) {
+            return 2;
+        }
+    }
+
+
+    if ((var1 == var2) && (var1 == var3) && (var1 == var4)) {
+        if (random4 == 0) {
+            return 1;
+        }
+        if (random4 == 1) {
+            return 2;
+        }
+        if (random4 == 2) {
+            return 3;
+        }
+        if (random4 == 3) {
+            return 4;
+        }
+    }
+
+
+
+
+
+
+
+
+}
+
+
+
 
 
 
@@ -81,8 +226,6 @@ int main() {
     char random_Schiff[10] = { 'F','S','S','K','K','K','B','B','B','B' };
     int Fehler[5] = { 0,0,0,0,0 };
     int Felder[5] = { 0,0,0,0,0 };
-    int Ueberpruefung[50];
-    int Summe[10];
     int ztemp;
     int rounds;
     int counter_a = 0;
@@ -96,32 +239,26 @@ int main() {
     int xy;
     int Probability[100];
     int a;
-    int highest = Probability[0];
+    int highest;
     int highestxy[60];
     int max=3;
     int* xyhit;
 
-
+    /*
     FILE* ptr;
     ptr = fopen("home/chrisch/Coding/Stats.txt","a+");
+    */
 
-
-   
+   /*
 
     if (ptr == NULL)
     {
         printf("Error!");
         exit(1);
     }
+    */
 
-
-    int Laengenarray[4] = { 4,3,2,1 };
-    for (int i = 0; i < 10; i++) {
-        Summe[i] = 0;
-    }
-    for (int i = 0; i < 50; i++) {
-        Ueberpruefung[i] = 0;
-    }
+ 
     srand(time(NULL));
 
 
@@ -129,20 +266,11 @@ int main() {
     for (int i = 0; i < 100; i++) {
         Spielfeld1[i] = 'w';
         Spielfeld2[i] = 'w';
-        Probability[100] = 100;
+        Probability[i] = 100;
 
     }
 
 
-
-
-
-
-
-    
-     
-     
-    
 
 
     printf("Geben Sie bitte die Anzahl der Spieler ein(1/2)\n");
@@ -1090,8 +1218,18 @@ int main() {
     }
 
     
-    
-
+    int rechts = 0;
+    int links = 0;
+    int oben = 0;
+    int unten = 0;
+    int hitting = 0;
+    xy = 0;
+    xyhit = 0;
+    int prechts=0;
+    int plinks=0;
+    int poben = 0;
+    int punten = 0;
+    int firsthit = 0;
 
     if (Auswahl == 1) {
 
@@ -1134,9 +1272,9 @@ int main() {
 
                         if (Zaehler1 == 30) {
                             printf("Sie haben gewonnen!!!");
-                            usleep(2000);
+                            Sleep(2);
                             n = 1;
-                            
+
                         }
                     }
                 }
@@ -1158,156 +1296,262 @@ int main() {
 
                 system("cls");
 
+                for (int b = 0; b < 100; b++) {
 
+                    if (Spielfeld2x[b] != 'X') {
 
-                for (int j = 0; j < 100; j++) {
-
-                    if (Spielfeld2x[xy] != 'W' && Spielfeld2x[xy] != 'S') {
-                        
-                        for (int e=4;i>0; e--) {
-                            if (Spielfeld2x[j + e] <= 99) {
-                                if (Spielfeld2x[j + e] == 'W' || Spielfeld2x[j + e] == 'S')
-                                    Probability[j]--;
-                            }
-                            else {
-                                Probability[j]--;
-                            }
-                            if (Spielfeld2x[j + e] >= 0) {
-                                if (Spielfeld2x[j - e] == 'W' || Spielfeld2x[j - e] == 'S')
-                                    Probability[j]--;
-                            }
-                            else {
-                                Probability[j]--;
-                            }
-                            if (Spielfeld2x[j + e * 10] <= 99) {
-                                if (Spielfeld2x[j + e * 10] == 'W' || Spielfeld2x[j + e * 10] == 'S')
-                                    Probability[j]--;
-                            }
-                            else {
-                                Probability[j]--;
-                            }
-                            if (Spielfeld2x[j + e] > 0) {
-                                if (Spielfeld2x[j - e * 10] == 'W' || Spielfeld2x[j - e * 10] == 'S')
-                                    Probability[j]--;
-                            }
-                            else {
-                                Probability[j]--;
-                            }
-
-                        }
+                        Probability[b] = 0;
                     }
 
-
                 }
-               
+                /*rounds wurde noch nicht aktualisiert*/
+                if (rounds != 0 && hit==0) {
+
+                    Probability[xy] = 0;
+                    
+                }
+
+                printf("hit = %d xy= %d\n",hit,xy );
+
+                for (int b = 0; b < 100; b++) {
+
+                    for (int e = 1; e < 5; e++) {
+
+                        if (Probability[b]!=0 && Probability[b + e]==0) {
+                            Probability[b]--;
+                        }
+                        if (Probability[b] != 0 && Probability[b - e] == 0) {
+                            Probability[b]--;
+                        }
+                        if (Probability[b] != 0 && Probability[(b - (e*10))] == 0) {
+                            Probability[b]--;
+                        }
+                        if (Probability[b] != 0 && Probability[(b + (e*10))] == 0) {
+                            Probability[b]--;
+                        }
+
+
+                        if (((b + e) / 10) > (b / 10) || ((b+e)>99)) {
+                            Probability[b]--;
+                        }
+                        if (((b - e) / 10) < (b / 10) || ((b-e)<0)) {
+                            Probability[b]--;
+                        }
+
+
+                        if (b + (e * 10) > 99) {
+                            Probability[b]--;
+                        }
+                        if ((b - (e * 10)) < 0) {
+                            Probability[b]--;
+                        }
+                    }
+                }
+
+                for (int b = 0; b < 100; b++) {
+                    if (b % 10 == 0) {
+                        printf("\n");
+                    }
+                    printf("[%d]", Probability[b]);
+                }
+
                 highest = Probability[0];
-                int p =0;
- 
-        for (int j = 1; j < 100; j++) 
-        {
-            if (highest < Probability[j])
-            highest = Probability[j];
-            if(highest < Probability[j]){
-            highestxy[0] = j;
-            p=0;
-            }
-            if(highest == Probability[j])
-            {
-                p++;
-                highestxy[p] = Probability[j];
-            }
+                int p = 1;
 
-        }
-        xy = highestxy[rand()%p+1];
+                for (int j = 1; j < 100; j++)
+                {
+                    if (highest < Probability[j]) {
 
+
+                        highestxy[0] = j;
+                        highest = Probability[j];
+                        p = 1;
+                    }
+                    if (highest == Probability[j]) {
+                        highestxy[p] = Probability[j];
+                        p++;
+                    }
                 
+                }
 
+                printf("\nhighesefskdjfkdsj Probability: %d %d\n", highestxy[0], highestxy[1]);
+
+
+               
+                    xyhit = xy;
+                
+                
+                if (hit == 0 && hitting == 0) {
+                    xy = highestxy[rand() % (p)];
+                }
+
+                xy = highestxy[rand() % (p)];
 
                 rounds++;
                 if (rounds == 1) {
                     xy = 44;
-                    
+
                 }
 
-                    
-            
-            
+                
+                
+
+                printf("\nrounds = %d highest Probability= %d\n", rounds, xy);
+                
+
+                /*Wahrscheinlichkeit für nächste Richtung*/
+
+                if (hit == 1 && hitting == 0) {
 
 
+                    firsthit = xyhit;
 
-            
+                    if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 1) {
 
+                        xy = firsthit + 1;
+                    }
+                    if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 2) {
 
-            
+                        xy = firsthit - 1;
+                    }
+                    if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 1) {
 
-            if (Spielfeld2[xy] == 's' || Spielfeld2[xy] == 'S') {
-                printf("\n\nHAHA! Du %s\n\n", randomcussword());
-                Spielfeld2[xy] = 'S';
-                Spielfeld2x[xy] = 'S';
-                hit = 1;
-                xy_[rounds / 2] = xy;
-               
-            }
-            else {
+                        xy = firsthit - 10;
+                    }
+                    if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 1) {
 
-                printf("\n\n...");
-                Spielfeld2[xy] = 'W';
-                Spielfeld2x[xy] = 'W';
-                hit = 0;
-            }
-
-
-
-
-
-
-          /*  Sleep(1000);*/
-
-
-
-
-
-            Zaehler2 = 0;
-
-
-            for (int i = 0; i < 100; i++) {
-                if (Spielfeld2[i] == 'S') {
-                    Zaehler2++;
-
-                    if (Zaehler2 == 30) {
-                        printf("Spieler 2 hat gewonnen!!!");
-                        usleep(2000);
-                        for (int i = 0; i <= rounds; i++) {
-                            fprintf(ptr, "%d", xy_[i]);
-                        }
-                        n = 1;
-                        
-                       
-                       
+                        xy = firsthit + 10;
                     }
 
 
 
-
+                    hitting = 1;
+                    printf("\nBIIIIGEEEEST %d \n", xy);
+                    printf("Ok her come the Probabilities\n %d\n %d\n %d\n %d\n", Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]);
 
                 }
-            }
+                /*hitting rechts*/
+                
 
+                if (hit == 0 && hitting == 1 && rechts == 1) {
+                    rechts = 0;
+                    
+                }
+                if (hit == 1 && hitting == 1 && rechts==1) {
+                    xy = xyhit + 1;
+                }
+                
+               
+
+                if (hit == 0 && hitting == 1 && links == 1) {
+
+                    links = 0;
+
+                }
+                if (hit == 1 && hitting == 1 && links ==1) {
+                    xy = xyhit - 1;
+                }
+
+
+                if (hit == 0 && hitting == 1 && oben == 1) {
+                    oben = 0;
+                }
+                if (hit == 1 && hitting == 1 && oben == 1) {
+                    xy = xyhit + 10;
+                }
+                
+
+                if (hit == 0 && hitting == 1 && unten == 1) {
+
+                    unten = 0;
+
+                }
+                if (hit == 1 && hitting == 1 && unten == 1) {
+                    xy = xyhit - 1;
+                }
+                
+
+
+                if (hit = 0 && hitting == 1 && rechts == 0 && links == 0 && oben == 0 && unten == 0) {
+                    xy = biggest(xy, prechts, plinks, poben, punten);
+                }
+
+
+
+                printf("xy=%d\n", xy);
+                printf("Probability=%d\n", Probability[xy]);
+
+
+
+                if (Spielfeld2[xy] == 's' || Spielfeld2[xy] == 'S') {
+                    printf("\n\nHAHA! Du %s\n\n", randomcussword());
+                    Spielfeld2[xy] = 'S';
+                    Spielfeld2x[xy] = 'S';
+                    hit = 1;
+                    xy_[rounds / 2] = xy;
+
+                }
+                else {
+
+                    printf("\n\n...");
+                    Spielfeld2[xy] = 'W';
+                    Spielfeld2x[xy] = 'W';
+                    hit = 0;
+                }
+
+
+
+
+
+
+                  Sleep(10000);
+
+
+
+
+
+                Zaehler2 = 0;
+
+
+                for (int i = 0; i < 100; i++) {
+                    if (Spielfeld2[i] == 'S') {
+                        Zaehler2++;
+
+                        if (Zaehler2 == 30) {
+                            printf("Spieler 2 hat gewonnen!!!");
+                            Sleep(2000);
+
+                            for (int i = 0; i <= rounds; i++) {
+                               /* fprintf(ptr, "%d", xy_[i]);*/
+                            }
+                            n = 1;
+
+
+
+                        }
+
+
+
+
+
+                    }
+                }
+
+
+
+            }
 
 
         }
 
 
+
     }
-
-
-
-
     
 
-
+    /*
     fclose(ptr);
-
+    */
 
 
 
@@ -1317,6 +1561,10 @@ int main() {
 
     return 0;
 }
+
+
+
+
 
 /*Change*/
 /*Change2*/

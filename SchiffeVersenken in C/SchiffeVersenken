@@ -1,10 +1,10 @@
-# 1 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 1 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
 # 1 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C//"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 1 "<command-line>" 2
-# 1 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 1 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
 # 1 "/usr/include/stdio.h" 1 3 4
 # 27 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
@@ -878,7 +878,7 @@ extern int __uflow (FILE *);
 extern int __overflow (FILE *, int);
 # 873 "/usr/include/stdio.h" 3 4
 }
-# 2 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp" 2
+# 2 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp" 2
 # 1 "/usr/include/c++/9/stdlib.h" 1 3
 # 36 "/usr/include/c++/9/stdlib.h" 3
 # 1 "/usr/include/c++/9/cstdlib" 1 3
@@ -2500,7 +2500,7 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 3 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp" 2
+# 3 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp" 2
 # 1 "/usr/include/time.h" 1 3 4
 # 29 "/usr/include/time.h" 3 4
 # 1 "/usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h" 1 3 4
@@ -2781,7 +2781,7 @@ extern int getdate_r (const char *__restrict __string,
 
 
 }
-# 4 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp" 2
+# 4 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp" 2
 # 1 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/cussword.h" 1
 
 
@@ -28708,7 +28708,7 @@ char* randomcussword() {
 
 
 }
-# 5 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp" 2
+# 5 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp" 2
 # 1 "/usr/include/unistd.h" 1 3 4
 # 27 "/usr/include/unistd.h" 3 4
 
@@ -30063,7 +30063,7 @@ extern __pid_t gettid (void) throw ();
 # 1171 "/usr/include/unistd.h" 2 3 4
 
 }
-# 6 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp" 2
+# 6 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp" 2
 
 
 
@@ -30071,7 +30071,7 @@ extern __pid_t gettid (void) throw ();
 
 
 
-# 12 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 12 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
 void Schuss(int Spieler, char Spielfeld[], char Spielfeldx[]){
     int x;
     int y;
@@ -30159,22 +30159,19 @@ int main() {
     int xy;
     int Probability[100];
     int a;
-    int highest = Probability[0];
-    int highestxy[60];
-    int max=3;
-    int* xyhit;
 
+
+    int max=3;
+    int xyhit;
 
     FILE* ptr;
-    ptr = fopen("home/chrisch/Coding/Stats.txt","a+");
-
-
+    ptr = fopen("Stats.txt","a+");
 
 
     if (ptr == 
-# 111 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp" 3 4
+# 108 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp" 3 4
               __null
-# 111 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 108 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
                   )
     {
         printf("Error!");
@@ -30190,9 +30187,9 @@ int main() {
         Ueberpruefung[i] = 0;
     }
     srand(time(
-# 125 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp" 3 4
+# 122 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp" 3 4
               __null
-# 125 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 122 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
                   ));
 
 
@@ -30203,14 +30200,14 @@ int main() {
         Probability[100] = 100;
 
     }
-# 148 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 145 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
     printf("Geben Sie bitte die Anzahl der Spieler ein(1/2)\n");
     scanf("%d", &Auswahl);
 
 
 
     if (Auswahl == 2) {
-# 164 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 161 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
         for (int i = 10; i > 0; i--) {
 
             system("@cls||clear");
@@ -30363,7 +30360,7 @@ int main() {
 
 
         system("@cls||clear");
-# 328 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 325 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
         for (int i = 10; i > 0; i--) {
 
             system("@cls||clear");
@@ -30517,7 +30514,7 @@ int main() {
     }
 
     else {
-# 490 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 487 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
         for (int u = 0; u < 10; u++) {
             random_Richtung[u] = "rlou"[rand() % 4];
         }
@@ -30528,7 +30525,7 @@ int main() {
         for (int u = 0; u < 400; u++) {
             random_y[u] = rand() % 10;
         }
-# 511 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 508 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
         for (int u = 0; u < 10; u++) {
             switch (random_Schiff[u]) {
 
@@ -30620,9 +30617,9 @@ int main() {
                         Fehler[e] = 0;
                     }
                 }
-# 624 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 621 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
                 break;
-# 633 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 630 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
             case 'l':
 
 
@@ -30676,7 +30673,7 @@ int main() {
                         Fehler[e] = 0;
                     }
                 }
-# 700 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 697 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
                 break;
 
 
@@ -30731,7 +30728,7 @@ int main() {
                         Fehler[e] = 0;
                     }
                 }
-# 775 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 772 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
                 break;
             case 'u':
                 while (1) {
@@ -30782,7 +30779,7 @@ int main() {
 
 
                 }
-# 846 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 843 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
                 break;
 
 
@@ -30798,7 +30795,7 @@ int main() {
             printf("%d %d\n \n%d\n", random_x[u + z], random_y[u + z], Laenge);
 
         }
-# 890 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 887 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
         for (int i = 10; i > 0; i--) {
 
             system("@cls||clear");
@@ -30949,7 +30946,7 @@ int main() {
         }
 
     }
-# 1055 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 1052 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
     rounds = 0;
 
 
@@ -31098,25 +31095,24 @@ int main() {
 
                 }
 
-                highest = Probability[0];
-                int p =0;
+                for (int e = 0; e < 100; ++e)
+                {
 
-        for (int j = 1; j < 100; j++)
-        {
-            if (highest < Probability[j])
-            highest = Probability[j];
-            if(highest < Probability[j]){
-            highestxy[0] = j;
-            p=0;
-            }
-            if(highest == Probability[j])
-            {
-                p++;
-                highestxy[p] = Probability[j];
-            }
+                    for (int j = e + 1; j < 100; ++j)
+                    {
 
-        }
-        xy = highestxy[rand()%p+1];
+                        if (Probability[e] > Probability[j])
+                        {
+
+                            a = Probability[e];
+                            Probability[e] = Probability[j];
+                            Probability[j] = a;
+
+                        }
+
+                    }
+
+                }
 
 
 
@@ -31126,7 +31122,36 @@ int main() {
                     xy = 44;
 
                 }
-# 1243 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+
+
+
+                if (Laengenarray[4] == 0) {
+                    max = 3;
+                }
+                if (Laengenarray[3] == 0 && Laengenarray[4]==0) {
+                    max = 2;
+                }
+                if (Laengenarray[2] == 0 && Laengenarray[3] == 0 && Laengenarray[4]==0) {
+                    max = 1;
+                }
+                if (Laengenarray[1] == 0 && Laengenarray[2] == 0 && Laengenarray[3] == 0 && Laengenarray[4] == 0) {
+                }
+                    max = 0;
+
+
+                    if (rounds != 1 && hit==0) {
+                    }
+                    if (Spielfeld2x[xy + 15] != 'S') {
+                        xy = xy + 15;
+                    }
+
+
+
+
+
+
+            }
+# 1264 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
             if (Spielfeld2[xy] == 's' || Spielfeld2[xy] == 'S') {
                 printf("\n\nHAHA! Du %s\n\n", randomcussword());
                 Spielfeld2[xy] = 'S';
@@ -31142,7 +31167,7 @@ int main() {
                 Spielfeld2x[xy] = 'W';
                 hit = 0;
             }
-# 1270 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 1291 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
             Zaehler2 = 0;
 
 
@@ -31183,6 +31208,6 @@ int main() {
 
 
     fclose(ptr);
-# 1318 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken.cpp"
+# 1339 "/home/chrisch/Repos/SchiffeVersenken-in-C/SchiffeVersenken in C/SchiffeVersenken in C.cpp"
     return 0;
 }
