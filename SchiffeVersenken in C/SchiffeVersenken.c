@@ -56,6 +56,9 @@ for (int i = 0; i < 100; i++) {
 
 }
 
+
+
+
 int biggest(int var1, int var2, int var3, int var4) {
 
     srand(time(NULL));
@@ -66,23 +69,29 @@ int biggest(int var1, int var2, int var3, int var4) {
 
     /*code  1->rechts  2--> links 3--> oben 4--> unten*/
 
-    printf("\n %d\n %d\n %d\n %d\n", var1, var2, var3, var4);
+   
 
 
     if ((var1 > var2) && (var1 > var3) && (var1 > var4)) {
+        printf("AUSWAHL1");
         return 1;
+        
     }
     if ((var2 > var1) && (var2 > var3) && (var1 > var4)) {
+        printf("AUSWAHL2");
         return 2;
     }
 
     if ((var3 > var1) && (var3 > var2) && (var3 > var4)) {
+        printf("AUSWAHL3");
         return 3;
     }
     if ((var4 > var1) && (var4 > var2) && (var4 > var3)) {
+        printf("AUSWAHL4");
         return 4;
     }
     if ((var1 == var2) && (var1 > var3) && (var1 > var4)) {
+        printf("AUSWAHL5");
         if (random2 == 0) {
             return 1;
         }
@@ -91,6 +100,7 @@ int biggest(int var1, int var2, int var3, int var4) {
         }
     }
     if ((var1 == var3) && (var1 > var2) && (var1 > var4)) {
+        printf("AUSWAHL6");
         if (random2 == 0) {
             return 1;
         }
@@ -99,6 +109,7 @@ int biggest(int var1, int var2, int var3, int var4) {
         }
     }
     if ((var1 == var4) && (var1 > var2) && (var1 > var3)) {
+        printf("AUSWAHL7");
         if (random2 == 0) {
             return 1;
         }
@@ -110,6 +121,7 @@ int biggest(int var1, int var2, int var3, int var4) {
 
 
     if ((var2 == var3) && (var2 > var1) && (var2 > var4)) {
+        printf("AUSWAHL8");
         if (random2 == 0) {
             return 2;
         }
@@ -118,6 +130,7 @@ int biggest(int var1, int var2, int var3, int var4) {
         }
     }
     if ((var2 == var4) && (var2 > var1) && (var1 > var3)) {
+        printf("AUSWAHL9");
         if (random2 == 0) {
             return 2;
         }
@@ -126,6 +139,7 @@ int biggest(int var1, int var2, int var3, int var4) {
         }
     }
     if ((var1 == var2) && (var1 == var3) && (var1 > var4)) {
+        printf("AUSWAHL10");
         if (random3 == 0) {
             return 1;
         }
@@ -138,6 +152,7 @@ int biggest(int var1, int var2, int var3, int var4) {
     }
 
     if ((var2 == var3) && (var2 == var4) && (var2 > var1)) {
+        printf("AUSWAHL11");
         if (random3 == 0) {
             return 2;
         }
@@ -150,6 +165,7 @@ int biggest(int var1, int var2, int var3, int var4) {
     }
 
     if ((var3 == var4) && (var3 == var1) && (var3 > var2)) {
+        printf("AUSWAHL12");
         if (random3 == 0) {
             return 3;
         }
@@ -161,6 +177,7 @@ int biggest(int var1, int var2, int var3, int var4) {
         }
     }
     if ((var4 == var1) && (var1 == var2) && (var4 > var3)) {
+        printf("AUSWAHL13");
         if (random3 == 0) {
             return 4;
         }
@@ -174,6 +191,7 @@ int biggest(int var1, int var2, int var3, int var4) {
 
 
     if ((var1 == var2) && (var1 == var3) && (var1 == var4)) {
+        printf("AUSWAHL14");
         if (random4 == 0) {
             return 1;
         }
@@ -188,9 +206,7 @@ int biggest(int var1, int var2, int var3, int var4) {
         }
     }
 
-
-
-
+    
 
 
 
@@ -1311,42 +1327,51 @@ int main() {
                     
                 }
 
+                
+
                 printf("hit = %d xy= %d\n",hit,xy );
 
+                /*Befüllung des Wahrscheinlichkeitsarrays*/
+                
                 for (int b = 0; b < 100; b++) {
 
                     for (int e = 1; e < 5; e++) {
+                        
+                        if (Probability[b] != 0) {
 
-                        if (Probability[b]!=0 && Probability[b + e]==0) {
-                            Probability[b]--;
-                        }
-                        if (Probability[b] != 0 && Probability[b - e] == 0) {
-                            Probability[b]--;
-                        }
-                        if (Probability[b] != 0 && Probability[(b - (e*10))] == 0) {
-                            Probability[b]--;
-                        }
-                        if (Probability[b] != 0 && Probability[(b + (e*10))] == 0) {
-                            Probability[b]--;
-                        }
-
-
-                        if (((b + e) / 10) > (b / 10) || ((b+e)>99)) {
-                            Probability[b]--;
-                        }
-                        if (((b - e) / 10) < (b / 10) || ((b-e)<0)) {
-                            Probability[b]--;
-                        }
+                            if (Probability[b + e] == 0) {
+                                Probability[b]--;
+                            }
+                            if (Probability[b - e] == 0) {
+                                Probability[b]--;
+                            }
+                            if (Probability[(b - (e * 10))] == 0) {
+                                Probability[b]--;
+                            }
+                            if (Probability[(b + (e * 10))] == 0) {
+                                Probability[b]--;
+                            }
 
 
-                        if (b + (e * 10) > 99) {
-                            Probability[b]--;
-                        }
-                        if ((b - (e * 10)) < 0) {
-                            Probability[b]--;
+                            if (((b + e) / 10) > (b / 10) || ((b + e) > 99)) {
+                                Probability[b]--;
+                            }
+                            if (((b - e) / 10) < (b / 10) || ((b - e) < 0)) {
+                                Probability[b]--;
+                            }
+
+
+                            if (b + (e * 10) > 99) {
+                                Probability[b]--;
+                            }
+                            if ((b - (e * 10)) < 0) {
+                                Probability[b]--;
+                            }
                         }
                     }
                 }
+
+                /*Ausgabe des Wahrscheinlichkeitsarrays zur Überprüfung*/
 
                 for (int b = 0; b < 100; b++) {
                     if (b % 10 == 0) {
@@ -1355,6 +1380,7 @@ int main() {
                     printf("[%d]", Probability[b]);
                 }
 
+                /*Auswertung der Koordinaten mit der höchsten Wahrscheinlichkeit*/
                 highest = Probability[0];
                 int p = 1;
 
@@ -1379,13 +1405,15 @@ int main() {
 
                
                     xyhit = xy;
+                    
                 
-                
+                /*Random Schuss mit der höchsten Wahrscheinlichkeit falls zuvor nicht getrife´n wurde*/
+
                 if (hit == 0 && hitting == 0) {
                     xy = highestxy[rand() % (p)];
                 }
 
-                xy = highestxy[rand() % (p)];
+                
 
                 rounds++;
                 if (rounds == 1) {
@@ -1393,93 +1421,239 @@ int main() {
 
                 }
 
-                
-                
+                /*falls nicht getroffen wurde, aber zuvor zweimal hintereinander*/
+                if (hit == 0 && hitting == 1) {
+                    if (rechts > 1) {
+                        links = 1;
+                        if ((firsthit - 1) < 0) {
+                            hitting = 0;
+                            rechts = 0;
+                            links = 0;
+                            oben = 0;
+                            unten = 0;
+                        }
+                        else {
+                            xy = firsthit - 1;
+                        }
+                    }
 
-                printf("\nrounds = %d highest Probability= %d\n", rounds, xy);
-                
-
-                /*Wahrscheinlichkeit für nächste Richtung*/
-
-                if (hit == 1 && hitting == 0) {
-
-
-                    firsthit = xyhit;
-
-                    if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 1) {
-
+                    if (links > 1) {
+                        rechts = 1;
+                        if ((firsthit + 1) > 99) {
+                            hitting = 0;
+                            rechts = 0;
+                            links = 0;
+                            oben = 0;
+                            unten = 0;
+                        }
                         xy = firsthit + 1;
+
                     }
-                    if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 2) {
-
-                        xy = firsthit - 1;
+                    if (oben > 1) {
+                        unten = 1;
+                        if ((firsthit + 10) > 99) {
+                            hitting = 0;
+                            rechts = 0;
+                            links = 0;
+                            oben = 0;
+                            unten = 0;
+                        }
+                        else {
+                            xy = firsthit + 10;
+                        }
                     }
-                    if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 1) {
+                    if (unten > 1) {
+                        oben = 1;
+                        if ((firsthit - 10) < 0) {
+                            hitting = 0;
+                            rechts = 0;
+                            links = 0;
+                            oben = 0;
+                            unten = 0;
+                        }
+                        else {
 
-                        xy = firsthit - 10;
+
+                            xy = firsthit - 10;
+                        }
+
+
+
                     }
-                    if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 1) {
-
-                        xy = firsthit + 10;
-                    }
-
-
-
-                    hitting = 1;
-                    printf("\nBIIIIGEEEEST %d \n", xy);
-                    printf("Ok her come the Probabilities\n %d\n %d\n %d\n %d\n", Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]);
-
                 }
-                /*hitting rechts*/
                 
 
-                if (hit == 0 && hitting == 1 && rechts == 1) {
-                    rechts = 0;
+                printf("\nrounds = %d highest Probability RANDOM!!!!!= %d\n", rounds, xy);
+                
+                /*hier schaut man ob die maximale Länge erreicht wurde, falls ja wird abgebrochen und per random geschossen*/
+                if (hit == 1 && hitting == 1) {
+                    
+                    if (rechts != 0) {
+                        rechts++;
+                    }
+                    if (links != 0) {
+                        links++;
+                    }
+                    if (oben != 0) {
+                        oben++;
+                    }
+                    if (unten != 0) {
+                        unten++;
+                    }
+                    if (rechts == 5 || links == 5 || oben == 5 || unten == 5) {
+                        hitting = 0;
+                        rechts = 0;
+                        links = 0;
+                        oben = 0;
+                        unten = 0;
+                    }
+                    if (((rechts + links) == 5) || ((oben + unten) == 5)) {
+                        hitting = 0;
+                        rechts = 0;
+                        links = 0;
+                        oben = 0;
+                        unten = 0;
+                    }
+
                     
                 }
-                if (hit == 1 && hitting == 1 && rechts==1) {
-                    xy = xyhit + 1;
-                }
-                
                
 
-                if (hit == 0 && hitting == 1 && links == 1) {
 
-                    links = 0;
+                    /*falls direkt nach einen Treffer verfehlt wird*/
 
-                }
-                if (hit == 1 && hitting == 1 && links ==1) {
-                    xy = xyhit - 1;
-                }
+                    if (rechts == 1 || links ==1 || oben ==1 || unten == 1) {
+                        printf("Schleife!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        if ((biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10])) == 1) {
+
+                            xy = firsthit + 1;
+                            rechts = 1;
+                            unten = 0;
+                            links = 0;
+                            oben = 0;
+                        }
+                        if ((biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10])) == 2) {
+
+                            xy = firsthit - 1;
+                            links = 1;
+                            oben = 0;
+                            rechts = 0;
+                            unten = 0;
+                        }
+                        if ((biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10])) == 3) {
+
+                            xy = firsthit - 10;
+                            oben = 1;
+                            links = 0;
+                            rechts = 0;
+                            unten = 0;
+                            
+                        }
+                        if ((biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10])) == 4) {
+
+                            xy = firsthit + 10;
+                            unten = 1;
+                            oben = 0;
+                            links = 0;
+                            rechts = 0;
+                            
+
+                        }
+
+                    }
 
 
-                if (hit == 0 && hitting == 1 && oben == 1) {
-                    oben = 0;
-                }
-                if (hit == 1 && hitting == 1 && oben == 1) {
-                    xy = xyhit + 10;
+
+                
+               
+                /*Wahrscheinlichkeit für nächste Richtung*/
+
+                if (hit == 1) {
+
+                    /*Falls getroffen wurde und die Richtung mit der höchsten Wahrscheinlichkeit richtig gewählt war*/
+                    if (hitting == 1) {
+
+                        if (rechts != 0) {
+                            xy = xy + 1;
+                            printf("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITTTTTTTT RECHTS &&&&& %d",xy);
+                        }
+                        if (links != 0) {
+                            xy = xy - 1;
+                            printf("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITTTTTTTT LLLLLLLLLLLLLIIIIIIINKKKKKKKKSSSSSS");
+                        }
+                        if (oben != 0) {
+                            xy = xy - 10;
+                        }
+                        if (unten != 0) {
+                            xy = xy + 10;
+                        }
+                    }
+
+                    if (hitting == 0) {
+                        firsthit = xyhit;
+
+                        if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 1) {
+
+                            xy = firsthit + 1;
+                            rechts = 1;
+                            links = 0;
+                            oben = 0;
+                            unten = 0;
+                            printf("RECHTS!!");
+
+                        }
+                        if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 2) {
+
+                            xy = firsthit - 1;
+                            links = 1;
+                            rechts = 0;
+                            oben = 0;
+                            unten = 0;
+                            printf("LINKS!!");
+                        }
+                        if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 3) {
+
+                            xy = firsthit - 10;
+                            oben = 1;
+                            rechts = 0;
+                            links = 0;
+                            unten = 0;
+
+
+                            printf("OBEN!!");
+                        }
+                        if (biggest(Probability[firsthit + 1], Probability[firsthit - 1], Probability[firsthit - 10], Probability[firsthit + 10]) == 4) {
+
+                            xy = firsthit + 10;
+                            unten = 1;
+                            rechts = 0;
+                            links = 0;
+                            oben = 0;
+                            printf("UNTEN!!");
+
+                        }
+
+                        hitting = 1;
+                    
+                    }
+
+                    
+                    
+                    
+
                 }
                 
-
-                if (hit == 0 && hitting == 1 && unten == 1) {
-
-                    unten = 0;
-
-                }
-                if (hit == 1 && hitting == 1 && unten == 1) {
-                    xy = xyhit - 1;
-                }
                 
+                
+                    
 
 
-                if (hit = 0 && hitting == 1 && rechts == 0 && links == 0 && oben == 0 && unten == 0) {
-                    xy = biggest(xy, prechts, plinks, poben, punten);
-                }
+               
 
 
 
-                printf("xy=%d\n", xy);
-                printf("Probability=%d\n", Probability[xy]);
+                printf("Geschossen wird auf  %d\n", xy);
+                printf("mit einer wahrscheinlichkeit von %d\n", Probability[xy]);
 
 
 
